@@ -16,7 +16,7 @@ module.exports = {
     "\\.(css|less)$": "<rootDir>/tests/setup/styleMock.js",
   },
   moduleDirectories: ["node_modules", "src"],
-  testMatch: ["**/tests/**/*.test.(ts|tsx|js)"],
+  testMatch: ["**/**/**/*.test.(ts|tsx|js)"],
   collectCoverage: true,
   //    "rootDir": "",
   //   "transform": {
