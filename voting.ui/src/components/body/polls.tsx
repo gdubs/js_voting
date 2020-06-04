@@ -8,9 +8,12 @@ interface IProps {
 }
 
 const Polls: React.SFC<IProps> = (props) => {
+  const [showPopup, setShowPopup] = React.useState(false);
+
   const voteActionStyle: string = "btn btn-primary btn-sm";
   const onVoteActionHandler = () => {
     console.log("vote!");
+    setShowPopup(true);
   };
 
   return (
@@ -42,6 +45,12 @@ const Polls: React.SFC<IProps> = (props) => {
           })}
         </tbody>
       </table>
+      {showPopup ? (
+        <div className="popup">
+          <div className="popup-inside">pop yo</div>
+          <button onClick={() => setShowPopup(false)}>close popup</button>
+        </div>
+      ) : null}
     </>
   );
 };
