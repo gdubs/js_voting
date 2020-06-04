@@ -4,6 +4,7 @@ import Polls from "../../../src/components/body/polls";
 import { IPoll } from "../../../src/domain/types";
 import { findByAttribute } from "../../../src/utils/findByAttribute";
 import { Button } from "../../../src/components/common/button";
+import { VoteStatus } from "../../../src/domain/enums";
 
 interface IProps {
   polls: IPoll[];
@@ -15,7 +16,7 @@ describe("<Polls /> loads", () => {
   let props: IProps;
 
   beforeEach(() => {
-    props = { polls: [{ id: 1, name: "Election 1", status: "Pending" }] };
+    props = { polls: [{ id: 1, name: "Election 1", status: VoteStatus.OPEN }] };
     component = mount(<Polls {...props} />);
   });
 

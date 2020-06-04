@@ -1,6 +1,7 @@
 import * as React from "react";
 import { IPoll } from "../../domain/types";
 import { Button } from "../common/button";
+import { VoteStatus } from "../../domain/enums";
 
 interface IProps {
   polls: IPoll[];
@@ -28,7 +29,7 @@ const Polls: React.SFC<IProps> = (props) => {
             return (
               <tr key={p.id}>
                 <td data-test-id="poll-name">{p.name}</td>
-                <td data-test-id="poll-status">{p.status}</td>
+                <td data-test-id="poll-status">{VoteStatus[p.status]}</td>
                 <td data-test-id="poll-action">
                   <Button
                     text={"Vote"}
