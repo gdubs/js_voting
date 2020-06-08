@@ -17,7 +17,8 @@ describe("<Button /> loads", () => {
     const wrapper = findByAttribute(component, "button");
     expect(wrapper.length).toBe(1);
   });
-  it("Should click", () => {
+
+  it("Should trigger click", () => {
     const wrapper = findByAttribute(component, "button");
     wrapper.simulate("click");
     expect(mock).toHaveBeenCalledTimes(1);

@@ -2,16 +2,25 @@ import * as React from "react";
 import { IPoll } from "../../domain/types";
 import { Button } from "../common/button";
 import { VoteStatus } from "../../domain/enums";
+import {Popup} from "../common/popup";
 
 interface IProps {
   polls: IPoll[];
 }
 
 const Polls: React.SFC<IProps> = (props) => {
+  const [showPopup, setShowPopup] = React.useState(false);
+
   const voteActionStyle: string = "btn btn-primary btn-sm";
   const onVoteActionHandler = () => {
     console.log("vote!");
+    setShowPopup(true);
   };
+
+  const onClosePopupHandler = (e:React.MouseEvent<{value:unknown}>) => {
+    console.log("close!");
+    setShowPopup(false);
+  }
 
   return (
     <>
@@ -42,6 +51,9 @@ const Polls: React.SFC<IProps> = (props) => {
           })}
         </tbody>
       </table>
+      {showPopup ? (
+        <Popup content={'test bro'} closedPopupHandler={(e:React.MouseEvent<{value:unknown}>) => {onClosePopupHandler(e)}}/>
+      ) : null}
     </>
   );
 };

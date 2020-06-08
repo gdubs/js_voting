@@ -31,6 +31,9 @@ describe("<Polls /> loads", () => {
     component.find(Button).props().clickHandler();
     expect(mock).toHaveBeenCalledTimes(1);
   });
+
+  it("Should update showPopup");
+
   // wait for redux
   //   it("Should display the poll when a new one is added");
 });
