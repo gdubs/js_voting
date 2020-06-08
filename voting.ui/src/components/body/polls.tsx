@@ -2,6 +2,7 @@ import * as React from "react";
 import { IPoll } from "../../domain/types";
 import { Button } from "../common/button";
 import { VoteStatus } from "../../domain/enums";
+import Popup from "../common/popup";
 
 interface IProps {
   polls: IPoll[];
@@ -46,10 +47,7 @@ const Polls: React.SFC<IProps> = (props) => {
         </tbody>
       </table>
       {showPopup ? (
-        <div className="popup">
-          <div className="popup-inside">pop yo</div>
-          <button onClick={() => setShowPopup(false)}>close popup</button>
-        </div>
+        <Popup content={'test bro'} closedPopupHandler={() => {onVoteActionHandler}}/>
       ) : null}
     </>
   );
