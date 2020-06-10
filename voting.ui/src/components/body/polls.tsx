@@ -2,13 +2,10 @@ import * as React from "react";
 import { IPoll } from "../../domain/types";
 import { Button } from "../common/button";
 import { VoteStatus } from "../../domain/enums";
-import {Popup} from "../common/popup";
+import { IAppState } from "../../reducers/reducers";
+import { connect, ConnectedProps } from "react-redux";
 
-interface IProps {
-  polls: IPoll[];
-}
-
-const Polls: React.SFC<IProps> = (props) => {
+const Polls: React.FunctionComponent<RdxProps> = ({ polls }) => {
   const [showPopup, setShowPopup] = React.useState(false);
 
   const voteActionStyle: string = "btn btn-primary btn-sm";
@@ -16,11 +13,6 @@ const Polls: React.SFC<IProps> = (props) => {
     console.log("vote!");
     setShowPopup(true);
   };
-
-  const onClosePopupHandler = (e:React.MouseEvent<{value:unknown}>) => {
-    console.log("close!");
-    setShowPopup(false);
-  }
 
   return (
     <>
@@ -34,9 +26,9 @@ const Polls: React.SFC<IProps> = (props) => {
           </tr>
         </thead>
         <tbody>
-          {props.polls.map((p) => {
+          {polls.map((p) => {
             return (
-              <tr key={p.id}>
+              <tr key={p.pollId}>
                 <td data-test-id="poll-name">{p.name}</td>
                 <td data-test-id="poll-status">{VoteStatus[p.status]}</td>
                 <td data-test-id="poll-action">
@@ -52,10 +44,24 @@ const Polls: React.SFC<IProps> = (props) => {
         </tbody>
       </table>
       {showPopup ? (
-        <Popup content={'test bro'} closedPopupHandler={(e:React.MouseEvent<{value:unknown}>) => {onClosePopupHandler(e)}}/>
+        <div className="popup">
+          <div className="popup-inside">pop yo</div>
+          <button onClick={() => setShowPopup(false)}>close popup</button>
+        </div>
       ) : null}
     </>
   );
 };
 
-export default Polls;
+const mapStateToProps = (state: IAppState) => {
+  return {
+    polls: state.pollsState.polls,
+  };
+};
+
+const connector = connect(mapStateToProps);
+
+type PropsFromRedux = ConnectedProps<typeof connector>;
+type RdxProps = PropsFromRedux;
+
+export default connector(Polls);
