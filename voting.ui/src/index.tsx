@@ -2,10 +2,22 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import App from "./app";
 
-// interface IProps {}
+import { Provider } from "react-redux";
+import { Store } from "redux";
+import { IAppState } from "./reducers/reducers";
+import configureStore from "./store/store";
 
-// const Root: React.SFC<IProps> = (props) => {
-//   return <div>Blah</div>;
-// };
+interface IProps {
+  store: Store<IAppState>;
+}
 
-ReactDOM.render(<App />, document.getElementById("app"));
+const Root: React.FunctionComponent<IProps> = (props) => {
+  return (
+    <Provider store={props.store}>
+      <App />
+    </Provider>
+  );
+};
+
+const store = configureStore();
+ReactDOM.render(<Root store={store} />, document.getElementById("app"));
