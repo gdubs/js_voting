@@ -19,8 +19,10 @@ export const PollsReducer: Reducer<IPollState, IPollsActions | any> = (
         ...state,
       };
     case PollActionConstant.GET_POLLS:
+      const new_polls = action.payload;
       return {
         ...state,
+        polls: new_polls,
       };
     case PollActionConstant.UPDATE_POLL:
       return {
