@@ -4,6 +4,7 @@ import Poll from "../../../src/components/body/poll";
 import { findByAttribute } from "../../../src/utils/findByAttribute";
 import { IPoll } from "../../../src/domain/types";
 import { VoteStatus } from "../../../src/domain/enums";
+import { Button } from "../../../src/components/common/button";
 
 describe("<Poll /> renders", () => {
   describe("Poll should show poll / voting options", () => {
@@ -31,10 +32,26 @@ describe("<Poll /> renders", () => {
       );
       expect(wrapper.length).toBe(1);
     });
-    it("Should enable vote buttons");
   });
   describe("Poll should be able to submit vote", () => {
-    beforeEach(() => {});
+    let component: any;
+    let wrapper: any;
+    let poll: IPoll;
+
+    beforeEach(() => {
+      poll = {
+        pollId: "poll_id",
+        name: "poll name",
+        voteStatus: VoteStatus.VOTED,
+        options: [{ pollOptionId: "poll_option_id_1", name: "Option 1" }],
+      };
+      component = mount(<Poll poll={poll} />);
+    });
+    it("Should enable vote buttons if not voted", () => {
+      wrapper = component.find(Button);
+      //   console.log(wrapper.debug());
+      expect(wrapper.find("button").length).toBe(1);
+    });
     it("Should be able to pick valid option");
     it("Should ask to confirm choice");
     it("Should show that vote was cast");

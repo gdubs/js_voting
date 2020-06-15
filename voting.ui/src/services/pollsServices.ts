@@ -1,4 +1,5 @@
 import { VoteStatus } from "../domain/enums";
+import { IPoll } from "../domain/types";
 
 const pageSize: number = 15;
 const baseUrl: string = "myapidomain";
@@ -11,7 +12,7 @@ export const SGetPolls = async (pageNumber: number) => {
       {
         pollId: "testid",
         name: "poll name",
-        status: VoteStatus.OPEN,
+        status: VoteStatus.NOT_VOTED,
         options: [],
       },
     ];

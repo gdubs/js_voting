@@ -39,7 +39,7 @@ export const GetPoll: ActionCreator<ThunkAction<
     const poll: IPoll = {
       pollId: "testid2",
       name: "name",
-      voteStatus: VoteStatus.CLOSE,
+      voteStatus: VoteStatus.NOT_VOTED,
       options: [],
     };
     dispatch({
