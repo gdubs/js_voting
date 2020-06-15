@@ -16,13 +16,6 @@ const Body: React.FunctionComponent<RdxProps> = ({ getPolls }) => {
     console.log("get polls");
   }, []);
 
-  const test_polls: IPoll[] = [
-    { pollId: "1", name: "test", status: VoteStatus.OPEN, options: [] },
-    { pollId: "2", name: "test 2", status: VoteStatus.OPEN, options: [] },
-    { pollId: "3", name: "test 3", status: VoteStatus.OPEN, options: [] },
-    { pollId: "4", name: "test 4", status: VoteStatus.OPEN, options: [] },
-    { pollId: "5", name: "test 5", status: VoteStatus.OPEN, options: [] },
-  ];
   return (
     <div className="container" data-test-id="body-polls">
       <Polls />
