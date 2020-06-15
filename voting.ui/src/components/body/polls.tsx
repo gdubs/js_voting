@@ -30,7 +30,7 @@ const Polls: React.FunctionComponent<RdxProps> = ({ polls }) => {
             return (
               <tr key={p.pollId}>
                 <td data-test-id="poll-name">{p.name}</td>
-                <td data-test-id="poll-status">{VoteStatus[p.status]}</td>
+                <td data-test-id="poll-status">{VoteStatus[p.voteStatus]}</td>
                 <td data-test-id="poll-action">
                   <Button
                     text={"Vote"}

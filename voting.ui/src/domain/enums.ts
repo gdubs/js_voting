@@ -1,5 +1,4 @@
 export enum VoteStatus {
-  OPEN = 1,
-  CLOSE,
+  NOT_VOTED = 1,
   VOTED,
 }

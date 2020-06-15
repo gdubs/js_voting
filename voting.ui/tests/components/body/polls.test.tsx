@@ -26,7 +26,7 @@ describe("<Polls /> loads", () => {
         {
           pollId: "iddddd_1",
           name: "Election 1",
-          status: VoteStatus.OPEN,
+          voteStatus: VoteStatus.NOT_VOTED,
           options: [],
         },
       ],
@@ -57,7 +57,7 @@ describe("<Polls /> loads", () => {
     expect(mock).toHaveBeenCalledTimes(1);
   });
 
-  it("Should update showPopup");
+  // it("Should update showPopup");
 
   // wait for redux
   //   it("Should display the poll when a new one is added");

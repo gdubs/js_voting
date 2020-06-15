@@ -13,7 +13,7 @@ interface IProps {}
 const Body: React.FunctionComponent<RdxProps> = ({ getPolls }) => {
   React.useEffect(() => {
     getPolls(1, 15);
-    console.log("get polls");
+    // console.log("get polls");
   }, []);
 
   return (
