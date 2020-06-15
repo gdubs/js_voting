@@ -5,6 +5,9 @@ import { IPoll } from "../../../src/domain/types";
 import { findByAttribute } from "../../../src/utils/findByAttribute";
 import { Button } from "../../../src/components/common/button";
 import { VoteStatus } from "../../../src/domain/enums";
+import { Provider } from "react-redux";
+import { IAppState, IPollState } from "../../../src/store/store.interfaces";
+import configureStore from "redux-mock-store";
 
 interface IProps {
   polls: IPoll[];
@@ -14,10 +17,32 @@ describe("<Polls /> loads", () => {
   let component: any;
   let wrapper: any;
   let props: IProps;
+  let store: any;
+  const mockStore = configureStore();
 
   beforeEach(() => {
-    props = { polls: [{ id: 1, name: "Election 1", status: VoteStatus.OPEN }] };
-    component = mount(<Polls {...props} />);
+    let pollsState: IPollState = {
+      polls: [
+        {
+          pollId: "iddddd_1",
+          name: "Election 1",
+          status: VoteStatus.OPEN,
+          options: [],
+        },
+      ],
+      poll: null,
+      pollsPageUI: { pageNumber: 1, pageSize: 15, totalPageNumber: 0 },
+    };
+
+    const initialState: IAppState = { pollsState };
+
+    store = mockStore(initialState);
+
+    component = mount(
+      <Provider store={store}>
+        <Polls {...props} />
+      </Provider>
+    );
   });
 
   it("Should load a list of polls", () => {

@@ -2,8 +2,8 @@ import * as React from "react";
 import { IPoll } from "../../domain/types";
 import { Button } from "../common/button";
 import { VoteStatus } from "../../domain/enums";
-import { IAppState } from "../../reducers/reducers";
 import { connect, ConnectedProps } from "react-redux";
+import { IAppState } from "../../store/store.interfaces";
 
 const Polls: React.FunctionComponent<RdxProps> = ({ polls }) => {
   const [showPopup, setShowPopup] = React.useState(false);

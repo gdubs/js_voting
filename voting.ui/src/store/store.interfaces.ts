@@ -5,3 +5,7 @@ export interface IPollState {
   readonly poll: IPoll | null;
   readonly pollsPageUI: IPageUI;
 }
+
+export interface IAppState {
+  pollsState: IPollState;
+}
