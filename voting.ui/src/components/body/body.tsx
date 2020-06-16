@@ -7,18 +7,19 @@ import { ThunkDispatch } from "redux-thunk";
 import { AnyAction } from "redux";
 import { GetPolls } from "../../actions/pollsActions";
 import { connect, ConnectedProps } from "react-redux";
-
-interface IProps {}
+import Poll from "./poll";
 
 const Body: React.FunctionComponent<RdxProps> = ({ getPolls }) => {
   React.useEffect(() => {
     getPolls(1, 15);
-    // console.log("get polls");
   }, []);
 
   return (
     <div className="container" data-test-id="body-polls">
-      <Polls />
+      <Switch>
+        <Route exact path="/polls" component={Polls} />
+        <Route exact path="/polls/:poll_id" component={Poll} />
+      </Switch>
     </div>
   );
 };

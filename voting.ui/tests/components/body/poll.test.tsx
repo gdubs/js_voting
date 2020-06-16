@@ -14,7 +14,7 @@ describe("<Poll /> renders", () => {
 
     beforeEach(() => {
       poll = {
-        pollId: "poll_id",
+        poll_id: "poll_id",
         name: "poll name",
         voteStatus: VoteStatus.NOT_VOTED,
         options: [{ pollOptionId: "poll_option_id_1", name: "Option 1" }],
@@ -28,7 +28,7 @@ describe("<Poll /> renders", () => {
     it("Should list all options", () => {
       wrapper = findByAttribute(
         component,
-        `${poll.options[0].pollOptionId}_${poll.pollId}`
+        `${poll.options[0].pollOptionId}_${poll.poll_id}`
       );
       expect(wrapper.length).toBe(1);
     });
@@ -40,19 +40,21 @@ describe("<Poll /> renders", () => {
 
     beforeEach(() => {
       poll = {
-        pollId: "poll_id",
+        poll_id: "poll_id",
         name: "poll name",
         voteStatus: VoteStatus.VOTED,
         options: [{ pollOptionId: "poll_option_id_1", name: "Option 1" }],
       };
       component = mount(<Poll poll={poll} />);
     });
+
     it("Should enable vote buttons if not voted", () => {
       wrapper = component.find(Button);
       //   console.log(wrapper.debug());
       expect(wrapper.find("button").length).toBe(1);
     });
-    it("Should be able to pick valid option");
+
+    it("Should be able to pick valid option", () => {});
     it("Should ask to confirm choice");
     it("Should show that vote was cast");
   });

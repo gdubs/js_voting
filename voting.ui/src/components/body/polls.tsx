@@ -28,12 +28,13 @@ const Polls: React.FunctionComponent<RdxProps> = ({ polls }) => {
         <tbody>
           {polls.map((p) => {
             return (
-              <tr key={p.pollId}>
+              <tr key={p.poll_id}>
                 <td data-test-id="poll-name">{p.name}</td>
                 <td data-test-id="poll-status">{VoteStatus[p.voteStatus]}</td>
                 <td data-test-id="poll-action">
                   <Button
                     text={"Vote"}
+                    disabled={false}
                     clickHandler={() => onVoteActionHandler()}
                     btnStyle={voteActionStyle}
                   />

@@ -9,7 +9,12 @@ describe("<Button /> loads", () => {
 
   beforeEach(() => {
     component = shallow(
-      <Button clickHandler={mock} text={"Test"} btnStyle={""} />
+      <Button
+        clickHandler={mock}
+        text={"Test"}
+        btnStyle={""}
+        disabled={false}
+      />
     );
   });
 

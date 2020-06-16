@@ -24,7 +24,7 @@ describe("<Polls /> loads", () => {
     let pollsState: IPollState = {
       polls: [
         {
-          pollId: "iddddd_1",
+          poll_id: "iddddd_1",
           name: "Election 1",
           voteStatus: VoteStatus.NOT_VOTED,
           options: [],

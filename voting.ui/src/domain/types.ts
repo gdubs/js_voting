@@ -1,7 +1,7 @@
 import { VoteStatus } from "./enums";
 
 export interface IPoll {
-  pollId: string;
+  poll_id: string;
   name: string;
   voteStatus: VoteStatus;
   options: IPollOption[];

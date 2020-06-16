@@ -32,19 +32,19 @@ export const GetPoll: ActionCreator<ThunkAction<
   IPollState,
   {},
   IPoll_GetPollById_Action
->> = (id: string) => {
+>> = (poll_id: string) => {
   return async (
     dispatch: ThunkDispatch<any, any, AnyAction>
   ): Promise<void> => {
     const poll: IPoll = {
-      pollId: "testid2",
+      poll_id: "testid2",
       name: "name",
       voteStatus: VoteStatus.NOT_VOTED,
       options: [],
     };
     dispatch({
       type: PollActionConstant.GET_POLL,
-      payload: poll,
+      payload: poll_id,
     });
   };
 };

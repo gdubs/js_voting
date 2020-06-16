@@ -10,9 +10,15 @@ export const SGetPolls = async (pageNumber: number) => {
       baseUrl + `/polls?pageNumber=${pageNumber}&pageSize=${pageSize}`;
     return [
       {
-        pollId: "testid",
+        poll_id: "testid_ksdjflskdjfisdlks",
         name: "poll name",
-        status: VoteStatus.NOT_VOTED,
+        voteStatus: VoteStatus.NOT_VOTED,
+        options: [],
+      },
+      {
+        poll_id: "testid_2",
+        name: "poll name 2",
+        voteStatus: VoteStatus.NOT_VOTED,
         options: [],
       },
     ];
