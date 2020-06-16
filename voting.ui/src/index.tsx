@@ -4,8 +4,8 @@ import App from "./app";
 
 import { Provider } from "react-redux";
 import { Store } from "redux";
-import { IAppState } from "./reducers/reducers";
 import configureStore from "./store/store";
+import { IAppState } from "./store/store.interfaces";
 
 interface IProps {
   store: Store<IAppState>;

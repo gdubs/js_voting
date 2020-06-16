@@ -15,8 +15,14 @@ export const PollsReducer: Reducer<IPollState, IPollsActions | any> = (
 ) => {
   switch (action.type) {
     case PollActionConstant.GET_POLL:
+      console.log("GET_POLL");
+      const selected_poll = state.polls.find(
+        (p) => p.poll_id === action.payload
+      );
+
       return {
         ...state,
+        poll: selected_poll,
       };
     case PollActionConstant.GET_POLLS:
       const new_polls = action.payload;

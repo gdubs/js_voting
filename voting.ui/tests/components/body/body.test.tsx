@@ -8,6 +8,7 @@ import { VoteStatus } from "../../../src/domain/enums";
 import { Provider } from "react-redux";
 import { IAppState, IPollState } from "../../../src/store/store.interfaces";
 import configureStore from "redux-mock-store";
+import thunk from "redux-thunk";
 
 interface IProps {
   polls: IPoll[];
@@ -17,15 +18,15 @@ describe("<Body /> loads", () => {
   let component: any;
   let wrapper: any;
   let store: any;
-  const mockStore = configureStore();
+  const mockStore = configureStore([thunk]); // need to add thunk to avoid Actions must be plain objects error
 
   beforeEach(() => {
     let pollsState: IPollState = {
       polls: [
         {
-          pollId: "idddddd_1",
+          poll_id: "idddddd_1",
           name: "Election 1",
-          status: VoteStatus.OPEN,
+          voteStatus: VoteStatus.NOT_VOTED,
           options: [],
         },
       ],
@@ -44,7 +45,7 @@ describe("<Body /> loads", () => {
     );
   });
   it("Should load Polls", () => {
-    wrapper = component.find(Polls);
+    wrapper = component.find(Body);
     expect(wrapper.length).toBe(1);
   });
 

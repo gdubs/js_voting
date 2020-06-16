@@ -8,6 +8,7 @@ import {
 import { IPoll } from "../domain/types";
 import { VoteStatus } from "../domain/enums";
 import { PollActionConstant } from "../store/store.enums";
+import { SGetPolls } from "../services/pollsServices";
 
 export const GetPolls: ActionCreator<ThunkAction<
   Promise<any>,
@@ -18,14 +19,7 @@ export const GetPolls: ActionCreator<ThunkAction<
   return async (
     dispatch: ThunkDispatch<any, any, AnyAction>
   ): Promise<void> => {
-    const polls: IPoll[] = [
-      {
-        pollId: "testid",
-        name: "poll name",
-        status: VoteStatus.OPEN,
-        options: [],
-      },
-    ];
+    const polls: IPoll[] = await SGetPolls(pageNumber);
     dispatch({
       type: PollActionConstant.GET_POLLS,
       payload: polls,
@@ -38,19 +32,19 @@ export const GetPoll: ActionCreator<ThunkAction<
   IPollState,
   {},
   IPoll_GetPollById_Action
->> = (id: string) => {
+>> = (poll_id: string) => {
   return async (
     dispatch: ThunkDispatch<any, any, AnyAction>
   ): Promise<void> => {
     const poll: IPoll = {
-      pollId: "testid2",
+      poll_id: "testid2",
       name: "name",
-      status: VoteStatus.CLOSE,
+      voteStatus: VoteStatus.NOT_VOTED,
       options: [],
     };
     dispatch({
       type: PollActionConstant.GET_POLL,
-      payload: poll,
+      payload: poll_id,
     });
   };
 };
