@@ -5,12 +5,17 @@ import { findByAttribute } from "../../../src/utils/findByAttribute";
 import { IPoll } from "../../../src/domain/types";
 import { VoteStatus } from "../../../src/domain/enums";
 import { Button } from "../../../src/components/common/button";
+import configureStore from "redux-mock-store";
+import { IPollState, IAppState } from "../../../src/store/store.interfaces";
+import { Provider } from "react-redux";
 
 describe("<Poll /> renders", () => {
   describe("Poll should show poll / voting options", () => {
     let component: any;
     let wrapper: any;
     let poll: IPoll;
+    let store: any;
+    const mockStore = configureStore();
 
     beforeEach(() => {
       poll = {
@@ -19,12 +24,27 @@ describe("<Poll /> renders", () => {
         voteStatus: VoteStatus.NOT_VOTED,
         options: [{ pollOptionId: "poll_option_id_1", name: "Option 1" }],
       };
-      component = shallow(<Poll poll={poll} />);
+
+      let pollsState: IPollState = {
+        polls: [],
+        poll: null,
+        pollsPageUI: { pageNumber: 1, pageSize: 15, totalPageNumber: 100 },
+      };
+      const initialState: IAppState = { pollsState };
+      store = mockStore(initialState);
+
+      component = shallow(
+        <Provider store={store}>
+          <Poll />
+        </Provider>
+      );
     });
+
     it("Should render component", () => {
       wrapper = findByAttribute(component, "poll-component");
       expect(wrapper.length).toBe(1);
     });
+
     it("Should list all options", () => {
       wrapper = findByAttribute(
         component,

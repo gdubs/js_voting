@@ -34,7 +34,7 @@ const Poll: React.FunctionComponent<RdxProps> = ({ poll, getPoll }) => {
               key={o.pollOptionId + "_" + poll.poll_id}
               data-test-id={o.pollOptionId + "_" + poll.poll_id}
             >
-              {o.name}
+              <input type="radio" value={o.name} name={poll_id} /> {o.name}
             </div>
           );
         })}
