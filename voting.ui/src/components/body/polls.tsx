@@ -4,6 +4,7 @@ import { Button } from "../common/button";
 import { VoteStatus } from "../../domain/enums";
 import { connect, ConnectedProps } from "react-redux";
 import { IAppState } from "../../store/store.interfaces";
+import { Link } from "react-router-dom";
 
 const Polls: React.FunctionComponent<RdxProps> = ({ polls }) => {
   const [showPopup, setShowPopup] = React.useState(false);
@@ -32,12 +33,18 @@ const Polls: React.FunctionComponent<RdxProps> = ({ polls }) => {
                 <td data-test-id="poll-name">{p.name}</td>
                 <td data-test-id="poll-status">{VoteStatus[p.voteStatus]}</td>
                 <td data-test-id="poll-action">
-                  <Button
+                  {/* <Button
                     text={"Vote"}
                     disabled={false}
                     clickHandler={() => onVoteActionHandler()}
                     btnStyle={voteActionStyle}
-                  />
+                  /> */}
+                  <Link
+                    className="btn btn-primary btn-sm"
+                    to={`/polls/${p.poll_id}`}
+                  >
+                    Vote
+                  </Link>
                 </td>
               </tr>
             );

@@ -3,7 +3,7 @@ import { IPoll } from "../../domain/types";
 import { Button } from "../common/button";
 import { VoteStatus } from "../../domain/enums";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { IAppState } from "../../store/store.interfaces";
 import { GetPoll } from "../../actions/pollsActions";
 import { ThunkDispatch } from "redux-thunk";
@@ -39,6 +39,9 @@ const Poll: React.FunctionComponent<RdxProps> = ({ poll, getPoll }) => {
           );
         })}
       </ul>
+      <Link className={voteBtnStyle} to="/polls">
+        Polls
+      </Link>
       <Button
         data-test-id="poll-submit-vote"
         text={"Submit choice"}
