@@ -18,7 +18,11 @@ const Poll: React.FunctionComponent<RdxProps> = ({ poll, getPoll }) => {
   const voteBtnStyle: string = "btn btn-primary btn-sm";
 
   React.useEffect(() => {
-    getPoll(poll_id);
+    getPoll(poll_id).then(() => {
+      console.log("pramis!");
+    });
+
+    if (!poll) console.log("cant find poll");
   }, []);
 
   const submitVoteHandler = () => {};
@@ -44,7 +48,7 @@ const Poll: React.FunctionComponent<RdxProps> = ({ poll, getPoll }) => {
       </Link>
       <Button
         data-test-id="poll-submit-vote"
-        text={"Submit choice"}
+        text={"Vote"}
         clickHandler={() => submitVoteHandler()}
         btnStyle={voteBtnStyle}
         disabled={!pollIsActive}

@@ -8,7 +8,7 @@ import {
 import { IPoll } from "../domain/types";
 import { VoteStatus } from "../domain/enums";
 import { PollActionConstant } from "../store/store.enums";
-import { SGetPolls } from "../services/pollsServices";
+import { SGetPolls, SGetPoll } from "../services/pollsServices";
 
 export const GetPolls: ActionCreator<ThunkAction<
   Promise<any>,
@@ -36,15 +36,16 @@ export const GetPoll: ActionCreator<ThunkAction<
   return async (
     dispatch: ThunkDispatch<any, any, AnyAction>
   ): Promise<void> => {
-    const poll: IPoll = {
-      poll_id: "testid2",
-      name: "name",
-      voteStatus: VoteStatus.NOT_VOTED,
-      options: [],
-    };
+    // const poll: IPoll = {
+    //   poll_id: "testid2",
+    //   name: "name",
+    //   voteStatus: VoteStatus.NOT_VOTED,
+    //   options: [],
+    // };
+    const poll: IPoll = await SGetPoll(poll_id);
     dispatch({
       type: PollActionConstant.GET_POLL,
-      payload: poll_id,
+      payload: poll,
     });
   };
 };
