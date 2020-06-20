@@ -28,6 +28,7 @@ describe("<Polls /> loads", () => {
           name: "Election 1",
           voteStatus: VoteStatus.NOT_VOTED,
           options: [],
+          canSelectMultiple: false,
         },
       ],
       poll: null,

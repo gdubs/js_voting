@@ -5,11 +5,13 @@ export interface IPoll {
   name: string;
   voteStatus: VoteStatus;
   options: IPollOption[];
+  canSelectMultiple: boolean;
 }
 
 export interface IPollOption {
   pollOptionId: string;
   name: string;
+  selected: boolean;
 }
 
 export interface IPageUI {
