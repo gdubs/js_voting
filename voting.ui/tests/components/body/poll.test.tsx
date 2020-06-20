@@ -22,7 +22,14 @@ describe("<Poll /> renders", () => {
         poll_id: "poll_id",
         name: "poll name",
         voteStatus: VoteStatus.NOT_VOTED,
-        options: [{ pollOptionId: "poll_option_id_1", name: "Option 1" }],
+        options: [
+          {
+            pollOptionId: "poll_option_id_1",
+            name: "Option 1",
+            selected: false,
+          },
+        ],
+        canSelectMultiple: false,
       };
 
       let pollsState: IPollState = {
@@ -63,7 +70,14 @@ describe("<Poll /> renders", () => {
         poll_id: "poll_id",
         name: "poll name",
         voteStatus: VoteStatus.VOTED,
-        options: [{ pollOptionId: "poll_option_id_1", name: "Option 1" }],
+        options: [
+          {
+            pollOptionId: "poll_option_id_1",
+            name: "Option 1",
+            selected: false,
+          },
+        ],
+        canSelectMultiple: false,
       };
       component = mount(<Poll poll={poll} />);
     });

@@ -33,6 +33,7 @@ export const PollsReducer: Reducer<IPollState, IPollsActions | any> = (
     case PollActionConstant.UPDATE_POLL:
       return {
         ...state,
+        poll: action.payload,
       };
     default:
       return {
