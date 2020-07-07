@@ -1,0 +1,37 @@
+#header {
+  background: #334739;
+  color: #c8d5b9;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-bottom: 15px;
+}
+
+nav.navbar {
+  background-color: #e3f2fd;
+  min-height: 70px;
+}
+
+.navbar-text img {
+  max-height: 30px;
+  width: auto;
+  vertical-align: middle;
+}
+
+.list-group-icon-left {
+  display: inline-block;
+}
+
+.svg-icon {
+  display: block;
+  margin: 0 auto;
+  position: absolute;
+  top: calc(50% - 14px);
+  left: calc(50% - 14px);
+}
+.poll-icon-container {
+  height: 50px;
+  width: 50px;
+  position: relative;
+  border-radius: 50%;
+  background-color: pink;
+}
