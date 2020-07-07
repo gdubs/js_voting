@@ -7,3 +7,8 @@
 
 */**/coverage
 /coverage
+
+/voting.api/serverless
+
+/wireframe/node_modules/
+/wireframe/src/images/

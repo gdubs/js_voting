@@ -79,7 +79,7 @@ describe("<Poll /> renders", () => {
         ],
         canSelectMultiple: false,
       };
-      component = mount(<Poll poll={poll} />);
+      component = mount(<Poll />);
     });
 
     it("Should enable vote buttons if not voted", () => {

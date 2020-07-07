@@ -8,6 +8,7 @@ import { VoteStatus } from "../../../src/domain/enums";
 import { Provider } from "react-redux";
 import { IAppState, IPollState } from "../../../src/store/store.interfaces";
 import configureStore from "redux-mock-store";
+import { MemoryRouter } from "react-router-dom";
 
 interface IProps {
   polls: IPoll[];
@@ -40,9 +41,11 @@ describe("<Polls /> loads", () => {
     store = mockStore(initialState);
 
     component = mount(
-      <Provider store={store}>
-        <Polls {...props} />
-      </Provider>
+      <MemoryRouter>
+        <Provider store={store}>
+          <Polls {...props} />
+        </Provider>
+      </MemoryRouter>
     );
   });
 
