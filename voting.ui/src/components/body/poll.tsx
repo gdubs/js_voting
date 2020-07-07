@@ -2,7 +2,7 @@ import * as React from "react";
 import { IPoll } from "../../domain/types";
 import { Button } from "../common/button";
 import { VoteStatus } from "../../domain/enums";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useParams, Link } from "react-router-dom";
 import { IAppState } from "../../store/store.interfaces";
 import { GetPoll, UpdatePoll } from "../../actions/pollsActions";
@@ -17,9 +17,13 @@ const Poll: React.FunctionComponent<RdxProps> = ({
 }) => {
   const { poll_id } = useParams();
   const [pollIsActive, setPollIsActive] = useState(
-    poll?.voteStatus == VoteStatus.NOT_VOTED
+    poll?.voteStatus !== VoteStatus.NOT_VOTED
   );
+  const [showPopup, setShowPopup] = React.useState(false);
   const voteBtnStyle: string = "btn btn-primary btn-sm";
+
+  // const [count, setCount] = useState(0);
+  // let render_ref = useRef<HTMLDivElement>(0);
 
   React.useEffect(() => {
     getPoll(poll_id).then(() => {
@@ -33,10 +37,23 @@ const Poll: React.FunctionComponent<RdxProps> = ({
     // get selected option
     // update the poll
     // call the action
+
+    // if (window.confirm("Are you sure you want to submit this vote?")) {
+    //   console.log("cancelled??");
+    //   this.onCancel(item);
+    // }
+
     let updated_poll: IPoll = { ...poll };
+    setShowPopup(true);
     submitPollVote(updated_poll);
   };
 
+  const popUpConfirmation = (confirm_answer: String) => {
+    if (confirm_answer === "confirm") console.log("blah");
+    // send to another page
+
+    setShowPopup(false);
+  };
   const onOptionSelected = (poll_option_id: string) => {
     console.log("option selected");
     const poll_option = poll?.options.find(
@@ -51,39 +68,69 @@ const Poll: React.FunctionComponent<RdxProps> = ({
   };
 
   return (
-    <div data-test-id="poll-component">
-      This is a poll {poll_id}
-      <div>bla {poll?.name}</div>
-      <ul data-test-id="poll-options">
-        {poll?.options.map((o) => {
-          return (
-            <div
-              key={o.pollOptionId + "_" + poll.poll_id}
-              data-test-id={o.pollOptionId + "_" + poll.poll_id}
-            >
-              <input
-                type="radio"
-                value={o.name}
-                name={poll_id}
-                checked={o.selected}
-                onChange={(e) => onOptionSelected(o.pollOptionId)}
-              />{" "}
-              {o.name}
+    <>
+      <div data-test-id="poll-component">
+        This is a poll {poll_id}
+        <div>bla {poll?.name}</div>
+        <ul data-test-id="poll-options">
+          {poll?.options.map((o) => {
+            return (
+              <div
+                key={o.pollOptionId + "_" + poll.poll_id}
+                data-test-id={o.pollOptionId + "_" + poll.poll_id}
+              >
+                <input
+                  type="radio"
+                  value={o.name}
+                  name={poll_id}
+                  checked={o.selected}
+                  onChange={(e) => onOptionSelected(o.pollOptionId)}
+                />{" "}
+                {o.name}
+              </div>
+            );
+          })}
+        </ul>
+        {/* <div>Click count : {count}</div>
+      <div>Renders: {render_ref.current++}</div>
+      <button onClick={() => setCount((c) => c + 1)}>Bla</button> */}
+        <Link className={voteBtnStyle} to="/polls">
+          Polls
+        </Link>
+        <Button
+          data-test-id="poll-submit-vote"
+          text={"Submit vote"}
+          clickHandler={() => submitVote()}
+          btnStyle={voteBtnStyle}
+          disabled={!pollIsActive}
+        />
+      </div>
+
+      {showPopup ? (
+        <div className="popup">
+          <div className="popup-inside">
+            <p>Are you sure about this?</p>
+            <div>
+              <button
+                onClick={() => {
+                  popUpConfirmation("cancel");
+                }}
+              >
+                Cancel
+              </button>
+              <button
+                onClick={() => {
+                  popUpConfirmation("confirm");
+                }}
+              >
+                Yes
+              </button>
             </div>
-          );
-        })}
-      </ul>
-      <Link className={voteBtnStyle} to="/polls">
-        Polls
-      </Link>
-      <Button
-        data-test-id="poll-submit-vote"
-        text={"Submit vote"}
-        clickHandler={() => submitVote()}
-        btnStyle={voteBtnStyle}
-        disabled={!pollIsActive}
-      />
-    </div>
+          </div>
+          <button onClick={() => setShowPopup(false)}>close popup</button>
+        </div>
+      ) : null}
+    </>
   );
 };
 

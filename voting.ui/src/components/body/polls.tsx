@@ -7,13 +7,13 @@ import { IAppState } from "../../store/store.interfaces";
 import { Link } from "react-router-dom";
 
 const Polls: React.FunctionComponent<RdxProps> = ({ polls }) => {
-  const [showPopup, setShowPopup] = React.useState(false);
+  // const [showPopup, setShowPopup] = React.useState(false);
 
   const voteActionStyle: string = "btn btn-primary btn-sm";
-  const onVoteActionHandler = () => {
-    console.log("vote!");
-    setShowPopup(true);
-  };
+  // const onVoteActionHandler = () => {
+  //   console.log("vote!");
+  //   setShowPopup(true);
+  // };
 
   return (
     <>
@@ -51,12 +51,6 @@ const Polls: React.FunctionComponent<RdxProps> = ({ polls }) => {
           })}
         </tbody>
       </table>
-      {showPopup ? (
-        <div className="popup">
-          <div className="popup-inside">pop yo</div>
-          <button onClick={() => setShowPopup(false)}>close popup</button>
-        </div>
-      ) : null}
     </>
   );
 };
