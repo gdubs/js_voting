@@ -33,5 +33,46 @@ nav.navbar {
   width: 50px;
   position: relative;
   border-radius: 50%;
+}
+/* WIP */
+.custom-color-primary {
   background-color: pink;
+}
+
+/* custom pills */
+.badge {
+  border-radius: 0;
+  font-size: 12px;
+  line-height: 1;
+  padding: 0.375rem 0.5625rem;
+  font-weight: normal;
+}
+
+.badge-outline-primary {
+  color: #405189;
+  border: 1px solid #405189;
+}
+
+.badge.badge-pill {
+  border-radius: 10rem;
+}
+
+.badge-outline-info {
+  color: #3da5f4;
+  border: 1px solid #3da5f4;
+}
+
+.badge-outline-danger {
+  color: #f1536e;
+  border: 1px solid #f1536e;
+}
+
+.badge-outline-success {
+  color: #00c689;
+  border: 1px solid #00c689;
+}
+
+.badge-outline-warning {
+  color: #fda006;
+  border: 1px solid #fda006;
 }
