@@ -15,12 +15,14 @@ const Body: React.FunctionComponent<RdxProps> = ({ getPolls }) => {
   }, []);
 
   return (
-    <div className="container" data-test-id="body-polls">
-      <Switch>
-        <Route exact path="/polls" component={Polls} />
-        <Route exact path="/polls/:poll_id" component={Poll} />
-      </Switch>
-    </div>
+    <main id="main">
+      <div className="container" data-test-id="body-polls">
+        <Switch>
+          <Route exact path="/polls" component={Polls} />
+          <Route exact path="/polls/:poll_id" component={Poll} />
+        </Switch>
+      </div>
+    </main>
   );
 };
 

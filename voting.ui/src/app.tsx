@@ -7,10 +7,10 @@ import { BrowserRouter as Router } from "react-router-dom";
 const App = () => {
   return (
     <Router>
-      <div data-test-id="App">
-        <Header data-test-id="header" />
-        <Body />
-      </div>
+      {/* <div data-test-id="App"> */}
+      <Header data-test-id="header" />
+      <Body />
+      {/* </div> */}
     </Router>
   );
 };

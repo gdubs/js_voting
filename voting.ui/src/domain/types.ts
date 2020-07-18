@@ -6,6 +6,14 @@ export interface IPoll {
   voteStatus: VoteStatus;
   options: IPollOption[];
   canSelectMultiple: boolean;
+  isOpen: boolean;
+  closesIn: string;
+  opensAt: Date;
+  endsAt: Date;
+  createdBy: string;
+  totalParticipants: number;
+  totalResponses: number;
+  participants: IParticipant[];
 }
 
 export interface IPollOption {
@@ -18,4 +26,10 @@ export interface IPageUI {
   pageNumber: number;
   pageSize: number;
   totalPageNumber?: number;
+}
+
+export interface IParticipant {
+  id: number;
+  name: string;
+  email: string;
 }

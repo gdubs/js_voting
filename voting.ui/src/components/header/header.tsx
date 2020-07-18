@@ -5,26 +5,24 @@ interface IProps {}
 
 const Header: React.SFC<IProps> = () => {
   return (
-    <nav
-      id="navbar"
-      className="navbar navbar-expand-sm bg-dark navbar-dark justify-content-end"
-    >
-      <img data-test-id="header-logo" alt="logo" src="" />
-      <div className="ml-auto mr-1" test-id="links">
-        <ul className="navbar-nav">
-          <li className="nav-item">
-            <Link className="nav-link" to="/polls">
+    <header>
+      <nav id="navbar" className="navbar navbar-expand-lg  navbar-dark">
+        <a href="#" className="navbar-brand">
+          Vote
+        </a>
+        <div className="collapse navbar-collapse">
+          <div className="navbar-nav ml-auto">
+            <Link className="nav-item nav-link" to="/polls">
               Polls
             </Link>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" data-test-id="header-login">
-              Login
-            </a>
-          </li>
-        </ul>
-      </div>
-    </nav>
+            <Link className="nav-item nav-link" to="/account">
+              <img className="rounded-circle" src="http://placehold.it/30x30" />
+              <span className="ml-2">You</span>
+            </Link>
+          </div>
+        </div>
+      </nav>
+    </header>
   );
 };
 

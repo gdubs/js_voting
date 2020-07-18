@@ -32,6 +32,7 @@ export const ApiGetPolls = async (pageNumber: number): Promise<IPoll[]> => {
 export const ApiGetPoll = async (poll_id: string): Promise<IPoll> => {
   try {
     const url = baseUrl + `/poll?pollId=${poll_id}`;
+    const now = new Date();
 
     return {
       poll_id: poll_id,
@@ -54,7 +55,15 @@ export const ApiGetPoll = async (poll_id: string): Promise<IPoll> => {
           selected: false,
         },
       ],
+      isOpen: false,
       canSelectMultiple: false,
+      closesIn: "1 day",
+      endsAt: new Date(now.getDate() + 1),
+      opensAt: new Date(now.getDate()),
+      createdBy: "Gabriel Rubrico",
+      totalParticipants: 15,
+      totalResponses: 4,
+      participants: [],
     };
   } catch (err) {
     throw err;
